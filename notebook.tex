@@ -1,0 +1,1152 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Exam\_Project\_Q3}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Question 1.1}\label{question-1.1}
+
+Introduced in 1950 by Richard Hamming, the Hamming code is basically a
+means of counteracting errors in the transfer of data in binary bit
+format. In the case of Hamming himself, the errors originated from the a
+punchcard reader at his workplace. Yet, this method can in principle be
+used for errorcorrection in data transfer, no matter the medium. The
+Hamming code makes use of the concepts of dot-product from linear
+algebra and parity bits in combination. The idea is this: take a 4-bit
+piece of data, you wish to transfer. This can be seen as a 4x1 vector.
+Multiply this vector by a 7x4 so-called \emph{"generator-matrix"}, to
+create a 7-bit \emph{code word}. This 7-bit code word now contains both
+the original 4 bits of data along with 3 parity bits, that can be used
+for error correction, once data has been transfered. The code below
+contains a method that, when supplied with a 4-bit data-string
+constructs a 7-bit code word, using a Hamming Code (named \emph{G
+matrix} in the code, short for generator matrix). The details of the
+method will be explained below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Imports}
+        \PY{k+kn}{import} \PY{n+nn}{random}
+        
+        \PY{c+c1}{\PYZsh{} Method to convert a 4\PYZhy{}bit message in to a 7\PYZhy{}bit code word, }
+        \PY{c+c1}{\PYZsh{} adding 3 parity bits in the process}
+        \PY{k}{def} \PY{n+nf}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{}This is the generator/encoding matrix}
+            \PY{n}{G\PYZus{}matrix} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{} Variable to hold the 7\PYZhy{}bit codeword}
+            \PY{n}{code\PYZus{}word} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{} For\PYZhy{}loop to test the number of rows in the matrix}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{G\PYZus{}matrix}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Variable to hold the dot\PYZhy{}product}
+                \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{c+c1}{\PYZsh{} Nested for\PYZhy{}loop to calculate the dot\PYZhy{}product of every row multiplicated by the 4\PYZhy{}bit message}
+                \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{n}{message}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{*} \PY{n}{G\PYZus{}matrix}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{x}\PY{p}{]}
+                \PY{c+c1}{\PYZsh{} Every dot\PYZhy{}product is appended to the code\PYZus{}word variable, creating the 7\PYZhy{}bit code\PYZus{}word.}
+                \PY{n}{code\PYZus{}word}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{count}\PY{o}{\PYZpc{}}\PY{k}{2})
+            
+            \PY{k}{return}\PY{p}{(}\PY{n}{code\PYZus{}word}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7\PYZhy{}bit code\PYZus{}word}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{encoder}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+7-bit code\_word [0, 1, 0, 0, 1, 0, 1]
+
+    \end{Verbatim}
+
+    When running the encoder on the 4 bits \textbf{{[}1,0,1,0{]}}, the
+resulting 7-bit code word is \textbf{{[}0,1,0,0,1,0,1{]}}.To understand
+the whole concept of Hamming codes, and why the 7-bit code word looks
+the way it does, it is necessary to understand the concept of parity
+bits. \#\#\# Parity bits These bits do not contain parts of the original
+data, but rather meta data in the form of \emph{"data about the data"}.
+This means, that a parity bit is an indication of wether the number of
+1's in a piece of data is even or odd. Working with even parities, means
+that a parity bit will be 1, if the number of 1's in piece of data is
+odd, as this makes the sum of all 1's even (odd number + 1 = even
+number. In the code above, 3 parity bits are introduced in positions 1,2
+and 4 of the 7-bit code word. This can be seen, as rows 1,2 and 4 in the
+G\_matrix have 3 1' each, but in different positions. What this means
+is, that all the parity bits look at 3 positions in the original 4
+pieces of data, and checks, whether they are even or odd. As an example,
+the first parity bit (first row of G-matrix) has the form
+\textbf{{[}1,0,1,1{]}}, which means that is "look" for 1's in positions
+1,3,4. Our data is \textbf{{[}1,0,1,0{]}}, which means we get a
+dot-product of 2 in this instance, as both vectors have a 1 in positions
+1 and 3. And so the parity bit in position 1 is a zero, as the number of
+1's in the bits looked at is already even. In the code this check for
+even/oddd is done by using the \emph{modulus-operator} with 2 (\%2). The
+following table illustrates which parity bits (P) are looking at which
+data bits (D), and which positions the different bits are placed in, in
+the final 7-bit code word:
+
+The 4 remaining bits of the 7-bit codeword in positions 3,5,6,7 are
+basically just a mirroring of the original 4 bits of data. It is worth
+noting (as is also illustrated in the above table), that the G-matrix
+used in this case actually turns the original 4 bits of data around.
+This can be seen by the way, that the 7th row of the G-matrix has a 1 in
+it's first position. This means that it "looks" at the first position of
+the data. The 6'th row has a 1 in it's 3rd position and so on.
+
+Encoding a 4 bits of data in to a 7 bit code word is only really a
+clever thing to do, if the data is at risk of incurring errors in the
+form of flipped bits. To demonstrate how the use of a Hamming code can
+effectively find and correct such a flipped bit error, the following
+code is a method, that introduces a random flipped bit to our code word
+\textbf{{[}0, 1, 0, 0, 1, 0, 1{]}}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Method introducing a random 1 bit error (bit\PYZhy{}flip) to the code\PYZus{}word,}
+        \PY{c+c1}{\PYZsh{} immitating a noisy data\PYZhy{}transfer}
+        \PY{k}{def} \PY{n+nf}{noisy\PYZus{}channel} \PY{p}{(}\PY{n}{code\PYZus{}word}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{} Variable to hold the code word with the 1\PYZhy{}bit error}
+            \PY{n}{err\PYZus{}code\PYZus{}word} \PY{o}{=} \PY{n}{code\PYZus{}word}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+            \PY{c+c1}{\PYZsh{} Variable to hold a random location of a 1\PYZhy{}bit error}
+            \PY{n}{bit\PYZus{}flip\PYZus{}location} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{code\PYZus{}word}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} If\PYZhy{}loop to flip the bit at the random location of error}
+            \PY{k}{if} \PY{n}{code\PYZus{}word}\PY{p}{[}\PY{n}{bit\PYZus{}flip\PYZus{}location}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                \PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{[}\PY{n}{bit\PYZus{}flip\PYZus{}location}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{[}\PY{n}{bit\PYZus{}flip\PYZus{}location}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+            
+            \PY{k}{return} \PY{p}{(}\PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original code word:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{encoder}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+        \PY{n}{err\PYZus{}code\PYZus{}word} \PY{o}{=} \PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word w. error:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Original code word: [0, 1, 0, 0, 1, 0, 1]
+Code word w. error: [0, 1, 0, 1, 1, 0, 1]
+
+    \end{Verbatim}
+
+    When running the above code, it should hopefully be apparent, that a bit
+in one of the 7 positions has been flipped. This is obviously a problem,
+as the data is not representative of the original data any more. There
+is of course a chance, that the flipped bit is one of the parity bits,
+and as such, the original 4 bits of data are still correct. But had we
+sent the 4 bits of data without 3 parity bits, a flipped bit would
+inevitably have been a bit of the original data, and in that case we
+would not have any means of finding and correcting this error by using
+the parity bits. The following code introduces a method, that looks for
+errors and correct these, if any are present. This is done by making use
+of a so-caled \emph{parity check matrix} (named H\_matrix in the code),
+looking at the 3 parity bits for information on whether an error is
+present in the data, and if so, in which location it is, so the bit in
+this position can be switched back. The details of the code are
+explained below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Method for correcting the 1\PYZhy{}bit error introduced to the original 7\PYZhy{}bit code word}
+        \PY{k}{def} \PY{n+nf}{error\PYZus{}correction} \PY{p}{(}\PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{} This is the parity\PYZhy{}check matrix}
+            \PY{n}{H\PYZus{}Matrix} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{} Variable to hold the location of the flipped bit (bit error)}
+            \PY{n}{error\PYZus{}location} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{c+c1}{\PYZsh{} Variable to hold the code word with the erroneous bit flipped back}
+            \PY{n}{corrected\PYZus{}code\PYZus{}word} \PY{o}{=} \PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{} For\PYZhy{}loop to test the number of rows in the matrix}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{H\PYZus{}Matrix}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Variable to hold the dot\PYZhy{}product}
+                \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{c+c1}{\PYZsh{} Nested for\PYZhy{}loop to calculate the dot\PYZhy{}product of every row multiplicated by the 7\PYZhy{}bit code word}
+                \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{*} \PY{n}{H\PYZus{}Matrix}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                        \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                \PY{c+c1}{\PYZsh{} If\PYZhy{}loop testing, whether the dot\PYZhy{}product is even or not. }
+                \PY{c+c1}{\PYZsh{}With an uneven dot\PYZhy{}product, the binary value of the parity\PYZhy{}bit is added to the error\PYZhy{}location}
+                \PY{k}{if} \PY{n}{count}\PY{o}{\PYZpc{}}\PY{k}{2} == 1:
+                    \PY{n}{error\PYZus{}location} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{o}{*}\PY{n}{i}
+            
+            \PY{c+c1}{\PYZsh{} If loop testing if the error loaction is 0 (no error).}
+            \PY{c+c1}{\PYZsh{} In case it is not, the bit at the error location will be flipped back}
+            \PY{k}{if} \PY{n}{error\PYZus{}location} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{if} \PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{[}\PY{n}{error\PYZus{}location}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                    \PY{n}{corrected\PYZus{}code\PYZus{}word}\PY{p}{[}\PY{n}{error\PYZus{}location}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{k}{else}\PY{p}{:} 
+                    \PY{n}{corrected\PYZus{}code\PYZus{}word}\PY{p}{[}\PY{n}{error\PYZus{}location}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+            
+            \PY{k}{return} \PY{p}{(}\PY{n}{corrected\PYZus{}code\PYZus{}word}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original code word:           }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{encoder}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word w. error:           }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word w. error correction:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Original code word:            [0, 1, 0, 0, 1, 0, 1]
+Code word w. error:            [0, 1, 0, 1, 1, 0, 1]
+Code word w. error correction: [0, 1, 0, 0, 1, 0, 1]
+
+    \end{Verbatim}
+
+    The above code, location and correcting the random bit-error in
+principle works just like the operation of encoding the 4-bit message.
+The H-matrix, being a 3x7 matrix, when multiplied by our 7x1 code word
+vector, results in a 3x1 vector representing the results of a
+parity-check of the 3 parity bits in the code word. If we look at the
+first row of the H-matrix \textbf{{[}1,0,1,0,1,0,1{]}}, it has 1's in
+position 1,3,5 and 7. Position 1 is the position of the parity bit
+itself, and if we look back at the table above (subsection on
+\textbf{parity bits}), we see that the first parity bit does indeed look
+to the data-bits in positions 3,5,7. As the Hamming code is working with
+even parity bits, the dot product of looking at the 4 positions should
+be an even number (once again the \emph{modulus-operator} is used with 2
+(\%2) to make this check in the code). If the parity check is even, the
+modulus-operation will result in a 0, indicating that the sum of 1's is
+still even, and that no single bits have been flipped in any of the 4
+positions 1,3,5,7, as the dot-product would otherwise have been odd.
+This means, that in case there are no errors in the data, the result of
+multiplying the H-matrix by the code word will be a {[}0,0,0{]} vector.
+In our case an error has been introduced, as 1 bit has been flipped. And
+this is where the Hamming code gets really clever. If the flipped bit is
+one of the parity bits, it is quite obvious, as the parity bit will now
+be giving the wrong information (saying even, when the number of one's
+being looked at is odd or the other way around). If, on the other hand,
+the bit-error is in a bit of the original data, all bits of data are
+"covered" by at least 2 parity bits (3 parity bits for data-bit 1). This
+means, that when a data-bit is flipped, 2 parity bits will actually be
+giving the wrong information (saying even, when the number of one's
+being looked at is odd or the other way around). Knowing which 2 parity
+bits are wrong, we also know which data-bit has been flipped, as it must
+be the one, shared by the 2 parity bits, that are "lying". This
+information is simply used to flip back the bit in the position
+corresponding position (a parity bit is 1 parity bit is wrong, and a
+data-bit if 2 or 3 parity-bits are wrong. The following code completes
+the last step of utilizing the Hamming code, by decoding the error
+corrected 7-bit code word back into the original 4-bit data-string by
+utilizing a \emph{decoding matrix} (named R\_matrix in the code). The
+details of the code are explained below:
+
+    \subsection{Question 1.2}\label{question-1.2}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Method for convert a 7\PYZhy{}bit codeword back into a 4\PYZhy{}bit message, }
+        \PY{c+c1}{\PYZsh{} removing 3 parity bits in the process}
+        \PY{k}{def} \PY{n+nf}{decoder}\PY{p}{(}\PY{n}{code\PYZus{}word}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{} This is the decoding matrix}
+            \PY{n}{R\PYZus{}matrix} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{} Variable to hold the decoded 4\PYZhy{}bit message}
+            \PY{n}{message} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{} For\PYZhy{}loop to test the number of rows in the matrix}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{R\PYZus{}matrix}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Variable to hold the dot\PYZhy{}product}
+                \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{c+c1}{\PYZsh{} Nested for\PYZhy{}loop to calculate the dot\PYZhy{}product of every row multiplicated by the 7\PYZhy{}bit code\PYZus{}word}
+                \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{code\PYZus{}word}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{code\PYZus{}word}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{*} \PY{n}{R\PYZus{}matrix}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                        \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                \PY{c+c1}{\PYZsh{} Every dot\PYZhy{}product is appended to the message variable, }
+                \PY{c+c1}{\PYZsh{} recreating the original 4\PYZhy{}bit message}
+                \PY{n}{message}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{count}\PY{p}{)}
+            
+            \PY{k}{return}\PY{p}{(}\PY{n}{message}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original 4\PYZhy{}bit message:        [1, 0, 1, 0]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original code word:           }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{encoder}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word w. error:           }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word w. error correction:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Decoded code word:            }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{decoder}\PY{p}{(}\PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{err\PYZus{}code\PYZus{}word}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Original 4-bit message:        [1, 0, 1, 0]
+Original code word:            [0, 1, 0, 0, 1, 0, 1]
+Code word w. error:            [0, 1, 0, 1, 1, 0, 1]
+Code word w. error correction: [0, 1, 0, 0, 1, 0, 1]
+Decoded code word:             [1, 0, 1, 0]
+
+    \end{Verbatim}
+
+    The decoding process is basically performing the opossite of the
+encoding process. This time we are multiplying the 4x7 H\_matrix by the
+7x1 code word. This will result in a 4x1 vector correctly representing
+the original data string. Looking at the 4 rows of the H-matrix, it
+becomes quite clear, that each one is looking at just 1 position in the
+7-bit code word. The first row is only looking at the 7th position,
+which is where the 1 bit of the original 4-bit data-string was placed
+(as explained, the data-string was reversed due to the way the Hamming
+code used in this paper is constructed. By the design of the H-matrix in
+this way, the data is now turned back around, and the 3 parity bits are
+sorted out. What we are left with is the original 4 bits of data, all
+correct, even though they passed through a noisy channel, that
+introduced an error to one of the bits.
+
+It is worth noting, that the 7x4 Hamming code is only effective at
+correcting 1 bit errors. The result of looking at the parity bits will
+not be distinguishable between 1 or 2 bit errors, yet with 2 flipped
+bits, it will not be possible to deduct their position, and as such, any
+attempt at correcting 2 bit errors will yield a wrong result.
+
+    \subsection{Question 1.3}\label{question-1.3}
+
+    The following code illustrates the overall functionality of all methods
+with 4 widely different 4-bit messages
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{message} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{The original message:                            }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{message}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The 7\PYZhy{}bit code\PYZus{}word of the message:              }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{With a random bit flip the code word becomes:    }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word after error detection and correction:  }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The decoded 4 bit message after error\PYZhy{}correction:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{decoder}\PY{p}{(}\PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{message} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{The original message:                            }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{message}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The 7\PYZhy{}bit code\PYZus{}word of the message:              }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{With a random bit flip the code word becomes:    }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word after error detection and correction:  }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The decoded 4 bit message after error\PYZhy{}correction:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{decoder}\PY{p}{(}\PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{message} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{The original message:                            }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{message}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The 7\PYZhy{}bit code\PYZus{}word of the message:              }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{With a random bit flip the code word becomes:    }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word after error detection and correction:  }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The decoded 4 bit message after error\PYZhy{}correction:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{decoder}\PY{p}{(}\PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{message} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{The original message:                            }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{message}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The 7\PYZhy{}bit code\PYZus{}word of the message:              }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{With a random bit flip the code word becomes:    }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Code word after error detection and correction:  }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The decoded 4 bit message after error\PYZhy{}correction:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{decoder}\PY{p}{(}\PY{n}{error\PYZus{}correction}\PY{p}{(}\PY{n}{noisy\PYZus{}channel}\PY{p}{(}\PY{n}{encoder}\PY{p}{(}\PY{n}{message}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+The original message:                             [0, 0, 0, 1]
+The 7-bit code\_word of the message:               [1, 1, 1, 0, 0, 0, 0]
+With a random bit flip the code word becomes:     [1, 1, 0, 0, 0, 0, 0]
+Code word after error detection and correction:   [1, 1, 1, 0, 0, 0, 0]
+The decoded 4 bit message after error-correction: [0, 0, 0, 1]
+
+The original message:                             [0, 1, 1, 0]
+The 7-bit code\_word of the message:               [1, 1, 0, 0, 1, 1, 0]
+With a random bit flip the code word becomes:     [1, 1, 0, 1, 1, 1, 0]
+Code word after error detection and correction:   [1, 1, 0, 0, 1, 1, 0]
+The decoded 4 bit message after error-correction: [0, 1, 1, 0]
+
+The original message:                             [1, 1, 1, 0]
+The 7-bit code\_word of the message:               [0, 0, 0, 1, 1, 1, 1]
+With a random bit flip the code word becomes:     [0, 0, 0, 1, 1, 0, 1]
+Code word after error detection and correction:   [0, 0, 0, 1, 1, 1, 1]
+The decoded 4 bit message after error-correction: [1, 1, 1, 0]
+
+The original message:                             [1, 1, 1, 1]
+The 7-bit code\_word of the message:               [1, 1, 1, 1, 1, 1, 1]
+With a random bit flip the code word becomes:     [1, 1, 1, 1, 1, 0, 1]
+Code word after error detection and correction:   [1, 1, 1, 1, 1, 1, 1]
+The decoded 4 bit message after error-correction: [1, 1, 1, 1]
+
+    \end{Verbatim}
+
+    \section{Question 2}\label{question-2}
+
+\subsection{Numpy}\label{numpy}
+
+Numpy (Numerical Python) is the core library for scientific computing in
+Python. It provides a high-performance multidimensional array object,
+and tools for working with these arrays. Numpy is heavily used within
+the field of machine learning, due to its mathematical and logical
+operations on arrays. It provides an abundance of useful features for
+operations on n-arrays and matrices in Python.
+
+\subsection{Implementation}\label{implementation}
+
+    The objective of Question 2 is to create our own implementation of a few
+functionalities supported by the Numpy library. We will call out
+implementation Snumpy, and create a dedicated class for it (referenced
+`snp').
+
+Our implementation looks as follows:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Creating the class Snumpy}
+        \PY{k}{class} \PY{n+nc}{Snumpy}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{}}
+            \PY{c+c1}{\PYZsh{}Create ones function}
+            \PY{k}{def} \PY{n+nf}{ones}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{length}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{}Create list}
+                \PY{n+nb}{list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{c+c1}{\PYZsh{}Make for loop and append 1}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{length}\PY{p}{)}\PY{p}{:}
+                    \PY{n+nb}{list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+                \PY{k}{return} \PY{n+nb}{list}
+            
+            \PY{c+c1}{\PYZsh{}Create zeros function}
+            \PY{k}{def} \PY{n+nf}{zeros}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{length}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb}{list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{length}\PY{p}{)}\PY{p}{:}
+                    \PY{n+nb}{list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+                \PY{k}{return} \PY{n+nb}{list}
+            
+            
+            \PY{c+c1}{\PYZsh{}Create function}
+            \PY{k}{def} \PY{n+nf}{reshape}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{array}\PY{p}{,} \PY{n+nb}{tuple}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{}Create matrix list}
+                \PY{n}{matrix} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{c+c1}{\PYZsh{}Identify the number of columns}
+                \PY{n}{columns} \PY{o}{=} \PY{n+nb}{tuple}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                \PY{c+c1}{\PYZsh{}Make for loop}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{tuple}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{}Split array into even sizes}
+                    \PY{n}{split} \PY{o}{=} \PY{n}{array}\PY{p}{[}\PY{n}{columns}\PY{o}{\PYZhy{}}\PY{n+nb}{tuple}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}\PY{n}{columns}\PY{p}{]}
+                    \PY{n}{matrix}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{split}\PY{p}{)}
+                    \PY{n}{columns} \PY{o}{=} \PY{n}{columns} \PY{o}{+} \PY{n+nb}{tuple}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{}Create shape function}
+            \PY{k}{def} \PY{n+nf}{shape}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{array}\PY{p}{)}\PY{p}{:}
+                \PY{n}{rows} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{}Check }
+                \PY{k}{if} \PY{n+nb}{isinstance}\PY{p}{(}\PY{n}{array}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n+nb}{list}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{columns} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{n}{columns} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{k}{return} \PY{p}{(}\PY{n}{rows}\PY{p}{,} \PY{n}{columns}\PY{p}{)}
+            
+            
+            \PY{k}{def} \PY{n+nf}{append}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{array1}\PY{p}{,} \PY{n}{array2}\PY{p}{)}\PY{p}{:}
+                \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{array1}\PY{p}{)} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{array2}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{array1}\PY{p}{)}
+                    \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{array2}\PY{p}{)}
+                    \PY{k}{return} \PY{n}{result}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{k}{return} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Those arrays can not be appended.}\PY{l+s+s2}{\PYZdq{}}
+            
+            \PY{k}{def} \PY{n+nf}{get}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{array}\PY{p}{,} \PY{n+nb}{tuple}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n}{array}\PY{p}{[}\PY{n+nb}{tuple}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{[}\PY{n+nb}{tuple}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}
+            
+            
+            \PY{k}{def} \PY{n+nf}{dotproduct}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{array1}\PY{p}{,} \PY{n}{array2}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb}{sum}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{pair}\PY{p}{:}\PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{array1}\PY{p}{,} \PY{n}{array2}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{snp} \PY{o}{=} \PY{n}{Snumpy}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Question 1}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{snp}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Question 2}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{snp}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Question 3}
+        \PY{n}{array} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}
+        \PY{n+nb}{tuple} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{snp}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{array}\PY{p}{,} \PY{n+nb}{tuple}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Question 4}
+        \PY{n}{array1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{snp}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{array1}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Question 5}
+        \PY{n}{array1} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}
+        \PY{n}{array2} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{snp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{array1}\PY{p}{,} \PY{n}{array2}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{array3} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{snp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{array2}\PY{p}{,} \PY{n}{array3}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Question 6}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{snp}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{array3}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Question 7}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{snp}\PY{o}{.}\PY{n}{dotproduct}\PY{p}{(}\PY{n}{array1}\PY{p}{,} \PY{n}{array2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 1, 1, 1, 1]
+[0, 0, 0, 0, 0]
+None
+(4, 0)
+[[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12]]
+Those arrays can not be appended.
+6
+217
+
+    \end{Verbatim}
+
+    \textbf{1}
+
+The first question deals with creating a function within our Snumpy
+class called `ones(Int), that takes an integer as argument. This
+function will return an array of length Int containing only ones.
+
+First we define the function and its parameter. Inside the function we
+first create a list to host the values. Then we loop over the length of
+the integer, and append the number 1 to the list for every iteration of
+the loop. At last we return the result. In Numpy, you could simply have
+done: \texttt{np.ones(Int)}
+
+    \textbf{2}
+
+Similarly, in question 2 you have to return an array of zeros.
+
+It is the same principle as the above function `ones', this time it is
+just zeroes we append to the array, instead of 1's.
+
+    \textbf{3}
+
+In question three we have to make our own implementation of Numpy's
+reshape function, which takes an array and converts it into the
+dimensions specified by a tuple (row, column).
+
+First we create the matrix variable and find the number of columns
+defined in the tuple. Then we loop through each row of the tuple, and
+split the array into even chunks, with the size of the columns defined
+in the tuple. Then we append the split into the matrix.
+
+    \textbf{4}
+
+Question 4 is about returning a tuple with the dimensions of a matrix or
+vector.
+
+Initially, we find the number of rows in the array, and then do a quick
+check of the dimensions of the array. Then we return the result as a
+tuple.
+
+    \textbf{5}
+
+Then we had to create an `append(array1, array2)' function, that takes
+two input vectors / matrices, and returns a new vector/matrix that is
+the combination of the two.
+
+First we define the result variable and then we check whether the
+vectors/matrices are in fact the same shape. If not, we throw an error
+saying they cannot be appended.
+
+    \textbf{6}
+
+Question 6 deals with creating a `get(array, (row, column))' function,
+that returns the value specified by the coordinate point of the array
+provided.
+
+    \textbf{7}
+
+The last question is about creating a function that computes the dot
+product of two arrays.
+
+    \section{Question 3}\label{question-3}
+
+    \subsection{Implementation}\label{implementation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{c+c1}{\PYZsh{}Importing libraries}
+         \PY{k+kn}{import} \PY{n+nn}{string}
+         \PY{k+kn}{import} \PY{n+nn}{math}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         
+         \PY{n}{corpus} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{this is the first document.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                   \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{This is the second document.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                   \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{this was the third document}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                   \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{document document document document}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{k}{def} \PY{n+nf}{build\PYZus{}vectors}\PY{p}{(}\PY{n}{corpus}\PY{o}{=}\PY{n+nb}{list}\PY{p}{,}\PY{n}{searchstring}\PY{o}{=}\PY{n+nb}{str}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{}Build word counters for textcorpus }
+             \PY{n}{counters} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             
+             \PY{k}{for} \PY{n}{document} \PY{o+ow}{in} \PY{n}{corpus}\PY{p}{:}
+                 \PY{n}{counter} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+                 
+                 \PY{c+c1}{\PYZsh{}Creating seperate documents with one word per element. }
+                 \PY{n}{document} \PY{o}{=} \PY{p}{[}\PY{n}{word}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{punctuation}\PY{p}{)}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)} 
+                             \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{document}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+                 
+                 \PY{c+c1}{\PYZsh{} Loop counting words for every document in corpus. }
+                 \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{document}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{word} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{counter}\PY{p}{:}
+                         \PY{n}{counter}\PY{p}{[}\PY{n}{word}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                     \PY{k}{else}\PY{p}{:}
+                         \PY{n}{counter}\PY{p}{[}\PY{n}{word}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}  
+                 \PY{c+c1}{\PYZsh{}Dictionary is appended to list}
+                 \PY{n}{counters}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{counter}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{}Build word counter for searchstring }
+             \PY{n}{searchstring\PYZus{}counter} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{n}{searchstring} \PY{o}{=} \PY{p}{[}\PY{n}{word}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{punctuation}\PY{p}{)}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)} 
+                             \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{searchstring}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+             
+             \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{searchstring}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{word} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{searchstring\PYZus{}counter}\PY{p}{:}
+                         \PY{n}{searchstring\PYZus{}counter}\PY{p}{[}\PY{n}{word}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                     \PY{k}{else}\PY{p}{:}
+                         \PY{n}{searchstring\PYZus{}counter}\PY{p}{[}\PY{n}{word}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+             
+             \PY{c+c1}{\PYZsh{}Set searchstring as last element in counters }
+             \PY{n}{counters}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{searchstring\PYZus{}counter}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{}Build combined dict}
+             \PY{c+c1}{\PYZsh{}Taking a set of keys(unique representation) and union them into combined dict}
+             \PY{n}{combined\PYZus{}dict} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{union}\PY{p}{(}\PY{o}{*}\PY{n}{counters}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{}Build vectors}
+             \PY{c+c1}{\PYZsh{}Building vectors in a comprehension list with conditions. }
+             \PY{n}{vector\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{counters}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+                 \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+                 \PY{c+c1}{\PYZsh{}For word in combined dict, check if word is in corresponding counter.}
+                 \PY{c+c1}{\PYZsh{}If true, append value to vector, else set value as 0.}
+                 \PY{n}{vector} \PY{o}{=} \PY{p}{[}\PY{n}{i} \PY{o}{+} \PY{n}{counters}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{p}{[}\PY{n}{word}\PY{p}{]} \PY{k}{if} \PY{n}{word} \PY{o+ow}{in} \PY{n}{counters}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{k}{else} \PY{n}{i} \PY{o}{+} \PY{l+m+mi}{0} 
+                           \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{combined\PYZus{}dict}\PY{p}{]} 
+                 \PY{n}{vector\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{vector}\PY{p}{)}
+         
+             \PY{k}{return} \PY{n}{counters}\PY{p}{,} \PY{n}{combined\PYZus{}dict}\PY{p}{,} \PY{n}{vector\PYZus{}list}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{c+c1}{\PYZsh{}Function for finding dot product, taking vector list as parameter}
+         \PY{k}{def} \PY{n+nf}{dotproduct}\PY{p}{(}\PY{n}{vl}\PY{p}{)}\PY{p}{:}
+             \PY{n}{dp\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{k}{for} \PY{n}{vector} \PY{o+ow}{in} \PY{n}{vl}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{doc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Doc}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{p}{(}\PY{n}{vl}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n}{vector}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{dot\PYZus{}product} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{n1} \PY{o}{*} \PY{n}{n2} \PY{k}{for} \PY{n}{n1}\PY{p}{,} \PY{n}{n2} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{vector}\PY{p}{,} \PY{n}{vl}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{dp\PYZus{}dict}\PY{p}{[}\PY{n}{doc}\PY{p}{]} \PY{o}{=} \PY{n}{dot\PYZus{}product}
+             \PY{k}{return} \PY{n}{dp\PYZus{}dict}
+\end{Verbatim}
+
+
+    This function we take a list of vectors and compute the dotproduct
+between search document vector and the different corpus document
+vectors. \(\newline\) \(D\) = document vectors have points
+\(d_1, d_2 ... d_n\), \(S\) = searchdocument vector have points
+\(s_1, s_2 ... s_n\). Algebraic definition:
+
+\[ D \cdot S = \displaystyle\sum_{i=1}^{n} d_i s_i = d_1 s_1 + d_2 s_2 + ... + d_n s_n \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{k}{def} \PY{n+nf}{euclideandistance}\PY{p}{(}\PY{n}{vl}\PY{p}{)}\PY{p}{:}
+             \PY{n}{ed\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{k}{for} \PY{n}{vector} \PY{o+ow}{in} \PY{n}{vl}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{doc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Doc}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{p}{(}\PY{n}{vl}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n}{vector}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{euclidean\PYZus{}distance} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{n1} \PY{o}{\PYZhy{}} \PY{n}{n2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} 
+                                                    \PY{k}{for} \PY{n}{n1}\PY{p}{,} \PY{n}{n2} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{vector}\PY{p}{,} \PY{n}{vl}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{ed\PYZus{}dict}\PY{p}{[}\PY{n}{doc}\PY{p}{]} \PY{o}{=} \PY{n}{euclidean\PYZus{}distance}
+             \PY{k}{return} \PY{n}{ed\PYZus{}dict}
+\end{Verbatim}
+
+
+    The euclidian function takes two vectors to compute the distance between
+endpoints of the different corpus documents vectors and the search
+document. \(\newline\) \(d\) = document vectors points, \(s\) =
+searchdocument vector points. Mathematical definition:
+
+\[ distance(d,s) = \sqrt{(d_1-s_1)^2+(d_2-s_2)^2+(d_n-s_n)^2} \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{k}{def} \PY{n+nf}{cosinesimilarity}\PY{p}{(}\PY{n}{vl}\PY{p}{)}\PY{p}{:}
+             \PY{n}{cs\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{k}{for} \PY{n}{vector} \PY{o+ow}{in} \PY{n}{vl}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{doc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Doc}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{p}{(}\PY{n}{vl}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n}{vector}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{dot\PYZus{}product} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{n1} \PY{o}{*} \PY{n}{n2} \PY{k}{for} \PY{n}{n1}\PY{p}{,} \PY{n}{n2} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{vector}\PY{p}{,} \PY{n}{vl}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{vector\PYZus{}norm} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{vector}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{sstr\PYZus{}norm} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{vl}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{product\PYZus{}norms} \PY{o}{=} \PY{n}{vector\PYZus{}norm} \PY{o}{*} \PY{n}{sstr\PYZus{}norm}
+                 \PY{n}{cosine\PYZus{}similarity} \PY{o}{=} \PY{n}{dot\PYZus{}product}\PY{o}{/}\PY{n}{product\PYZus{}norms}
+                 \PY{n}{cs\PYZus{}dict}\PY{p}{[}\PY{n}{doc}\PY{p}{]} \PY{o}{=} \PY{n}{cosine\PYZus{}similarity}
+             \PY{k}{return} \PY{n}{cs\PYZus{}dict}
+\end{Verbatim}
+
+
+    Cosine similarity takes to vectors to compute the angle between the
+vectors. A value of 1 means that the vectors are similar, implying that
+the vectors are on top of eachother, where a value of 0 causes
+orthogonal vectors.
+
+\(D\) = document vectors
+
+\(S\) = searchdocument vector
+
+Algebraic definition:
+
+\[ cos(\theta)=\frac{D \cdot S}{\| D \| \| S \|} =\frac{\displaystyle\sum_{i=1}^{n} D_i S_i}{\sqrt{\displaystyle\sum_{i=1}^{n} D_i^2}\sqrt{\displaystyle\sum_{i=1}^{n} S_i^2}}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{c+c1}{\PYZsh{}The following code pieces displays the results}
+         \PY{c+c1}{\PYZsh{} Set search string}
+         \PY{n}{sstr}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{this was the fourth document}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{counters}\PY{p}{,} \PY{n}{combined\PYZus{}dict}\PY{p}{,} \PY{n}{vector\PYZus{}list} \PY{o}{=} \PY{n}{build\PYZus{}vectors}\PY{p}{(}\PY{n}{corpus}\PY{p}{,}\PY{n}{sstr}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}Visualize data}
+         \PY{n}{combined\PYZus{}dict\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{n}{combined\PYZus{}dict}\PY{p}{]}
+         
+         \PY{n}{df\PYZus{}vectors} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{)}
+         \PY{n}{df\PYZus{}counters} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{counters}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{combined\PYZus{}dict\PYZus{}list}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{df\PYZus{}counters}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:}    document  first  fourth   is  second  the  third  this  was
+         0         1    1.0     NaN  1.0     NaN  1.0    NaN   1.0  NaN
+         1         1    NaN     NaN  1.0     1.0  1.0    NaN   1.0  NaN
+         2         1    NaN     NaN  NaN     NaN  1.0    1.0   1.0  1.0
+         3         4    NaN     NaN  NaN     NaN  NaN    NaN   NaN  NaN
+         4         1    NaN     1.0  NaN     NaN  1.0    NaN   1.0  1.0
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{df\PYZus{}combined}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:}      0      1    2         3       4      5     6       7   8
+         0  the  third  was  document  second  first  this  fourth  is
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{df\PYZus{}vectors}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}56}]:}    0  1  2  3  4  5  6  7  8
+         0  1  0  0  1  0  1  1  0  1
+         1  1  0  0  1  1  0  1  0  1
+         2  1  1  1  1  0  0  1  0  0
+         3  0  0  0  4  0  0  0  0  0
+         4  1  0  1  1  0  0  1  1  0
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{df\PYZus{}dotproduct} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{n}{dotproduct}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n}{df\PYZus{}dotproduct}
+         \PY{c+c1}{\PYZsh{}df\PYZus{}dotproduct.sort\PYZus{}values(by)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:}    Doc1  Doc2  Doc3  Doc4
+         0     3     3     4     4
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{n}{df\PYZus{}euclideandistance} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{n}{euclideandistance}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n}{df\PYZus{}euclideandistance}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}58}]:}    Doc1  Doc2      Doc3      Doc4
+         0   2.0   2.0  1.414214  3.605551
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{df\PYZus{}cosinesimilarity} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{n}{cosinesimilarity}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n}{df\PYZus{}cosinesimilarity}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:}    Doc1  Doc2  Doc3      Doc4
+         0   0.6   0.6   0.8  0.447214
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{c+c1}{\PYZsh{}validate  with numpy}
+         \PY{n}{doc1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{doc2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{doc3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+         \PY{n}{doc4} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+         \PY{n}{sstr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{vector\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}Doc 3 vs. search documents}
+         \PY{n}{dotproduct} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{doc3}\PY{p}{,}\PY{n}{sstr}\PY{p}{)}
+         \PY{n}{euclideandistance} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{doc3}\PY{o}{\PYZhy{}}\PY{n}{sstr}\PY{p}{)}
+         \PY{n}{cosinesimilarity} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{doc3}\PY{p}{,} \PY{n}{sstr}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{doc3}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{sstr}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{euclideandistance}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{dotproduct}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{cosinesimilarity}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1.4142135623730951
+4
+0.7999999999999998
+
+    \end{Verbatim}
+
+    \subsection{Discussions of formulas and
+measurements}\label{discussions-of-formulas-and-measurements}
+
+\subsubsection{Dot product}\label{dot-product}
+
+In text similarity the dot product is a powerful way to determine if
+there is any similarity between two documents. A positive dot product
+means that there is similarity between the documents, in some way.
+However, the product itself does not give an indication in what way the
+documents is similar. E.g. when document A consist of same words as
+document B, but document A has 10x more words. In this case the theta
+would be 0o ( cos(0) = 1 ) but the big distances would imply a high dot
+product, due to a large number of the words occurrences. Therefore, when
+using the dot product as a similarity measure, it is important to bring
+in additional measures in order to establish the type of similarity.
+
+\[ A \cdot B =\| A \| \| B \| cos(\theta) \]
+
+By this definition we know, that a dot product equals to zero, implies
+two orthogonal vectors, which means that the theta is 90 degrees. And as
+we know that the greater our theta is, the less the value of cosine of
+theta, thus the similarity decreases between two documents.
+
+\subsubsection{Euclidean distance}\label{euclidean-distance}
+
+The Euclidean distance tells about the length between the endpoints of
+the vectors, which give an indication of how long the distance between
+words in two documents is. It is important, to note if one term is
+represented many times in the document but the rest of words is similar
+to the searching document, the distance will go up, which could give a
+false indication of the similarity. Therefore when using the Euclidean
+measure it is important to look at the cosine similarity in order to
+assess if the abovementioned hypothesis is correct.
+
+\[ \| q - p \| = \sqrt{(q - p)^2 * (q - p)^2}\]
+
+\subsubsection{Cosine similiarity}\label{cosine-similiarity}
+
+This brings us to using Cosine similarity as a distance measure, as the
+cosine similarity actually tells us how great the angle between two
+vectors is. We can then say how similar or far away two documents is.
+With a cosine of theta = 1 indicating that there is a 100\% similarity
+between two documents. This will happen only if the exact same words
+occur in the different documents.
+
+\[ cos(\theta) = \frac{A \cdot B} {\| A \| \| B \|} \]
+
+\subsubsection{Assessment}\label{assessment}
+
+On the basis of abovementioned, it is clear that various measures needs
+to be done in order to find an accurate similarity grade. Using
+Euclidean distance and cosine similarity individually, and a assessing
+the similarity on these measures, we find a proper indication of
+document similarities.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
